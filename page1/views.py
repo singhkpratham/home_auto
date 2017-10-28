@@ -2,31 +2,18 @@ from django.shortcuts import render,HttpResponse
 import RPi.GPIO as GPIO
 import time
 # Create your views here.
+pins = list([1,2,3,4])
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(pins, GPIO.OUT)
 
 def index(request):
-    print(request.POST)
-    if request.POST['switch']:
-        pin4(request.POST['switch'])
-    return render(request, 'page1.html', {'request':request})
-
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(4, GPIO.OUT)
-
-def pin4(mode=False):
-    while mode:
-        GPIO.output(4, True)
-
-
-##GPIO.output(4, False)
-
-##GPIO.cleanup()
-
-##GPIO.setmode(GPIO.BCM)
-##GPIO.setup(4,GPIO.IN)
-
-##for i in range(10000):
-##    time.sleep(0.05)
-##    print(GPIO.input(4))
-
-GPIO.cleanup()
+    if request.method == 'POST':
+        dt = dict(request.POST)
+        pinsOn  = [int(k[-1]) for k in dt if k[:3] == 'pin']
+        pinsOff = [c for c in pins if c not in pinsOn]
+        GPIO.output(pinsOn, GPIO.HIGH)
+        GPIO.output(pinsOff, GPIO.LOW)
+    # print(pinsOff,pinsOn)
+    pinStatus = {p:'checked' if GPIO.input(p) == 1 else '' for p in pins }
+    print(pinStatus)
+    return render(request, 'page1.html', {'request':request,'pins':pinStatus})
