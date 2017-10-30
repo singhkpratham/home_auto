@@ -3,12 +3,9 @@
 <html lang="en">
     <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
 		<!-- Website CSS style -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
-		<!-- Website Font style -->
+        <!-- Website Font style -->
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 		<!-- Google Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
@@ -24,8 +21,7 @@
 			<div class="row main">
 				<div class="main-login main-center">
 				<h5>Control all the devices attached. More coming soon!</h5>
-
-					<form class="" method="post" action="">
+                    <form class="" method="post" action="">
                          {% csrf_token %}
                         {% for pin,status in pins.items %}
                             Pin{{ pin }}
@@ -43,8 +39,7 @@
 				</div>
 			</div>
 		</div>
-
-		 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 	</body>
